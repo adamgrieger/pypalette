@@ -55,8 +55,3 @@ docs/_build/
 
 # PyBuilder
 target/
-
-# Miscellaneous
-*.png
-*.jpg
-.idea/
