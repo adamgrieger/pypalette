@@ -1,7 +1,7 @@
 def main():
-    print(rgb2hsv(0, 255, 0))
-    print(rgb2hsv(192, 192, 192))
-    print(rgb2hsv(128, 128, 128))
+    print(rgb2hsl(0, 255, 0))
+    print(rgb2hsl(192, 192, 192))
+    print(rgb2hsl(128, 128, 128))
 
 
 def average_color(rgb):
@@ -46,6 +46,33 @@ def rgb2hsv(r, g, b):
     v = c_max
 
     return h, s * 100, v * 100
+
+
+def rgb2hsl(r, g, b):
+    rp = r / 255
+    gp = g / 255
+    bp = b / 255
+    c_max = max(rp, gp, bp)
+    c_min = min(rp, gp, bp)
+    delta = c_max - c_min
+
+    if delta == 0:
+        h = 0
+    elif c_max == rp:
+        h = 60 * (((gp - bp) / delta) % 6)
+    elif c_max == gp:
+        h = 60 * (((bp - rp) / delta) + 2)
+    else:
+        h = 60 * (((rp - gp) / delta) + 4)
+
+    l = (c_max + c_min) / 2
+
+    if delta == 0:
+        s = 0
+    else:
+        s = delta / (1 - abs((2 * l) - 1))
+
+    return h, s * 100, l * 100
 
 
 if __name__ == "__main__":
