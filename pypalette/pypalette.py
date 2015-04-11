@@ -1,7 +1,7 @@
 def main():
-    print(rgb2hsl(0, 255, 0))
-    print(rgb2hsl(192, 192, 192))
-    print(rgb2hsl(128, 128, 128))
+    print(rgb2cmyk(0, 255, 0))
+    print(rgb2cmyk(192, 192, 192))
+    print(rgb2cmyk(128, 128, 128))
 
 
 def average_color(rgb):
@@ -73,6 +73,19 @@ def rgb2hsl(r, g, b):
         s = delta / (1 - abs((2 * l) - 1))
 
     return h, s * 100, l * 100
+
+
+def rgb2cmyk(r, g, b):
+    rp = r / 255
+    gp = g / 255
+    bp = b / 255
+
+    k = 1 - max(rp, gp, bp)
+    c = (1 - rp - k) / (1 - k)
+    m = (1 - gp - k) / (1 - k)
+    y = (1 - bp - k) / (1 - k)
+
+    return c, m, y, k
 
 
 if __name__ == "__main__":
