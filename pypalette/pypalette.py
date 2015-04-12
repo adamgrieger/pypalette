@@ -1,5 +1,5 @@
 def main():
-    print(hsv2rgb(180, 1, 0.5))
+    print(hsl2rgb(180, 1, 0.25))
 
 
 def average_color(rgb):
@@ -107,7 +107,36 @@ def rgb2hsl(r, g, b):
 
 
 def hsl2rgb(h, s, l):
-    pass
+    c = (1 - abs(2 * l - 1)) * s
+    x = c * (1 - abs((h / 60) % 2 - 1))
+    m = l - c / 2
+
+    if 0 <= h < 60:
+        rp = c
+        gp = x
+        bp = 0
+    elif 60 <= h < 120:
+        rp = x
+        gp = c
+        bp = 0
+    elif 120 <= h < 180:
+        rp = 0
+        gp = c
+        bp = x
+    elif 180 <= h < 240:
+        rp = 0
+        gp = x
+        bp = c
+    elif 240 <= h < 300:
+        rp = x
+        gp = 0
+        bp = c
+    else:
+        rp = c
+        gp = 0
+        bp = x
+
+    return rp * 255 + m, gp * 255 + m, bp * 255 + m
 
 
 def rgb2cmyk(r, g, b):
