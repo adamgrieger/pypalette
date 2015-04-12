@@ -1,5 +1,5 @@
 def main():
-    print(hsl2rgb(180, 1, 0.25))
+    print(cmyk2rgb(1, 1, 0, 0))
 
 
 def average_color(rgb):
@@ -153,7 +153,11 @@ def rgb2cmyk(r, g, b):
 
 
 def cmyk2rgb(c, m, y, k):
-    pass
+    r = 255 * (1 - c) * (1 - k)
+    g = 255 * (1 - m) * (1 - k)
+    b = 255 * (1 - y) * (1 - k)
+
+    return r, g, b
 
 
 def rgb2hex(r, g, b):
