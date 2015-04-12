@@ -1,7 +1,5 @@
 def main():
-    print(rgb2cmyk(0, 255, 0))
-    print(rgb2cmyk(192, 192, 192))
-    print(rgb2cmyk(128, 128, 128))
+    print(rgb2hex(0, 0, 0))
 
 
 def average_color(rgb):
@@ -86,6 +84,14 @@ def rgb2cmyk(r, g, b):
     y = (1 - bp - k) / (1 - k)
 
     return c, m, y, k
+
+
+def rgb2hex(r, g, b):
+    r_hex = hex(r)[2:]
+    g_hex = hex(g)[2:]
+    b_hex = hex(b)[2:]
+
+    return r_hex.zfill(2) + g_hex.zfill(2) + b_hex.zfill(2)
 
 
 if __name__ == "__main__":
