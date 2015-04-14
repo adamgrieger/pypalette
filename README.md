@@ -27,6 +27,7 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
 - Image blending
 - Dithering
 - Easy access to CSS3 colors
+- Retro game console palettes
 
 ## License
     The MIT License (MIT)
