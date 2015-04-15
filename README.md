@@ -9,17 +9,17 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
   - Hex -> RGB
   - HSL -> RGB
   - HSV -> RGB
-  - RGB -> HSV
-  - RGB -> HSL
   - RGB -> CMYK
   - RGB -> Hex
+  - RGB -> HSI
+  - RGB -> HSL
+  - RGB -> HSV
 2. **Image Color Analysis**
   - Average color
 
 ## What are some things on the TODO list?
 - Thorough documentation
 - Thoroughly testing all functions
-- RGB to HSI conversion
 - HSI to RGB conversion
 - K-means++ implementation for adaptive color palette generation
 - Median color
