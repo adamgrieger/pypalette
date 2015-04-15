@@ -1,5 +1,8 @@
+import math
+
+
 def main():
-    print(hex2rgb('00ddff'))
+    print(rgb2hsi(128, 128, 128))
 
 
 def average_color(rgb):
@@ -170,6 +173,30 @@ def rgb2hex(r, g, b):
 
 def hex2rgb(hx):
     return int(hx[0:2], 16), int(hx[2:4], 16), int(hx[4:6], 16)
+
+
+def rgb2hsi(r, g, b):
+    if g >= b:
+        try:
+            h = math.acos((r - (0.5 * g) - (0.5 * b))
+                          / math.sqrt((r ** 2) + (g ** 2) + (b ** 2) - (r * g) - (r * b) - (g * b)))
+        except ZeroDivisionError:
+            h = 0
+    else:
+        try:
+            h = 360 - math.acos((r - (0.5 * g) - (0.5 * b))
+                                / math.sqrt((r ** 2) + (g ** 2) + (b ** 2) - (r * g) - (r * b) - (g * b)))
+        except ZeroDivisionError:
+            h = 0
+
+    i = (r + g + b) / 3
+
+    if i > 0:
+        s = 1 - (min(r, g, b) / i)
+    else:
+        s = 0
+
+    return h, s, i
 
 
 if __name__ == "__main__":
