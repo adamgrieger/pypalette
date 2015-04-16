@@ -3,6 +3,7 @@ import math
 
 def main():
     print(rgb2hsi(128, 128, 128))
+    print(hsi2rgb(0, 0, 128))
 
 
 def average_color(rgb):
@@ -202,6 +203,31 @@ def rgb2hsi(r, g, b):
     i = (r + g + b) / (3 * 255)
 
     return h * (180 / math.pi), s, i * 255
+
+
+def hsi2rgb(h, s, i):
+    h *= math.pi / 180
+    i /= 255
+    x = i * (1 - s)
+    y = i * (1 + (s * math.cos(h)) / math.cos((math.pi / 3) - h))
+    z = 3 * i - (x + y)
+
+    if h < 2 * math.pi / 3:
+        b = x
+        r = y
+        g = z
+    elif h < 4 * math.pi / 3:
+        h -= 2 * math.pi / 3
+        r = x
+        g = y
+        b = z
+    else:
+        h -= 4 * math.pi / 3
+        g = x
+        b = y
+        r = z
+
+    return r * 255, g * 255, b * 255
 
 
 if __name__ == '__main__':
