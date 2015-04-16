@@ -20,7 +20,6 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
 ## What are some things on the TODO list?
 - Thorough documentation
 - Thoroughly testing all functions
-- HSI to RGB conversion
 - K-means++ implementation for adaptive color palette generation
 - Median color
 - Grayscale
