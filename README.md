@@ -7,6 +7,7 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
 1. **Color Space Conversions**
   - CMYK -> RGB
   - Hex -> RGB
+  - HSI -> RGB
   - HSL -> RGB
   - HSV -> RGB
   - RGB -> CMYK
