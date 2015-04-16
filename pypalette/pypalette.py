@@ -176,28 +176,33 @@ def hex2rgb(hx):
 
 
 def rgb2hsi(r, g, b):
-    if g >= b:
+    try:
+        rp = r / (r + g + b)
+        gp = g / (r + g + b)
+        bp = b / (r + g + b)
+    except ZeroDivisionError:
+        rp = 0
+        gp = 0
+        bp = 0
+
+    if b <= g:
         try:
-            h = math.acos((r - (0.5 * g) - (0.5 * b))
-                          / math.sqrt((r ** 2) + (g ** 2) + (b ** 2) - (r * g) - (r * b) - (g * b)))
+            h = math.acos((0.5 * ((rp - gp) + (rp - bp))) / math.sqrt((rp - gp) ** 2 + (rp - bp) * (gp - bp)))
         except ZeroDivisionError:
             h = 0
     else:
         try:
-            h = 360 - math.acos((r - (0.5 * g) - (0.5 * b))
-                                / math.sqrt((r ** 2) + (g ** 2) + (b ** 2) - (r * g) - (r * b) - (g * b)))
+            h = (2 * math.pi) - math.acos(
+                (0.5 * ((rp - gp) + (rp - bp))) / math.sqrt((rp - gp) ** 2 + (rp - bp) * (gp - bp)))
         except ZeroDivisionError:
             h = 0
 
-    i = (r + g + b) / 3
+    s = 1 - 3 * min(rp, gp, bp)
 
-    if i > 0:
-        s = 1 - (min(r, g, b) / i)
-    else:
-        s = 0
+    i = (r + g + b) / (3 * 255)
 
-    return h, s, i
+    return h * (180 / math.pi), s, i * 255
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
