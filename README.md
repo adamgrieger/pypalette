@@ -1,4 +1,4 @@
-# PyPalette
+# ![PyPalette](http://i.imgur.com/QWeYq0i.png) PyPalette
 
 ## What is the goal of PyPalette?
 The current goal for PyPalette is not very defined. My plan is to incorporate as many different functionalities relating to colors and images as possible. There are so many things to do that I feel like going with the wind is the best way currently. Any suggestions are welcome and encouraged.
