@@ -1,4 +1,4 @@
-import math
+from math import acos, cos, pi, sqrt
 
 
 def main():
@@ -188,13 +188,14 @@ def rgb2hsi(r, g, b):
 
     if b <= g:
         try:
-            h = math.acos((0.5 * ((rp - gp) + (rp - bp))) / math.sqrt((rp - gp) ** 2 + (rp - bp) * (gp - bp)))
+            h = acos((0.5 * ((rp - gp) + (rp - bp))) /
+                     sqrt((rp - gp) ** 2 + (rp - bp) * (gp - bp)))
         except ZeroDivisionError:
             h = 0
     else:
         try:
-            h = (2 * math.pi) - math.acos(
-                (0.5 * ((rp - gp) + (rp - bp))) / math.sqrt((rp - gp) ** 2 + (rp - bp) * (gp - bp)))
+            h = (2 * pi) - acos((0.5 * ((rp - gp) + (rp - bp))) /
+                                sqrt((rp - gp) ** 2 + (rp - bp) * (gp - bp)))
         except ZeroDivisionError:
             h = 0
 
@@ -202,27 +203,27 @@ def rgb2hsi(r, g, b):
 
     i = (r + g + b) / (3 * 255)
 
-    return h * (180 / math.pi), s, i * 255
+    return h * (180 / pi), s, i * 255
 
 
 def hsi2rgb(h, s, i):
-    h *= math.pi / 180
+    h *= pi / 180
     i /= 255
     x = i * (1 - s)
-    y = i * (1 + (s * math.cos(h)) / math.cos((math.pi / 3) - h))
+    y = i * (1 + (s * cos(h)) / cos((pi / 3) - h))
     z = 3 * i - (x + y)
 
-    if h < 2 * math.pi / 3:
+    if h < 2 * pi / 3:
         b = x
         r = y
         g = z
-    elif h < 4 * math.pi / 3:
-        h -= 2 * math.pi / 3
+    elif h < 4 * pi / 3:
+        h -= 2 * pi / 3
         r = x
         g = y
         b = z
     else:
-        h -= 4 * math.pi / 3
+        h -= 4 * pi / 3
         g = x
         b = y
         r = z
