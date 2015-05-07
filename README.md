@@ -21,7 +21,7 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
 ## What are some things on the TODO list?
 - Thorough documentation
 - Thoroughly testing all functions
-- K-means++ implementation for adaptive color palette generation
+- K-means clustering optimization (if possible)
 - Median color
 - Grayscale
 - Sepia
@@ -29,6 +29,7 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
 - Dithering
 - Easy access to CSS3 colors
 - Retro game console palettes
+- Atomic emission spectra (maybe)
 
 ## License
     The MIT License (MIT)
