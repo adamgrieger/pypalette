@@ -1,9 +1,14 @@
 from math import acos, cos, pi, sqrt
+from PIL import Image
+from kmeans import KMeans
 
 
 def main():
-    print(rgb2hsi(128, 128, 128))
-    print(hsi2rgb(0, 0, 128))
+    im = Image.open('..\\testingimages\\kodim21.png')
+    imlist = list(im.getdata())
+    imobj = KMeans(imlist, 5)
+    for cluster in imobj.clusters:
+        print(cluster['cc'])
 
 
 def average_color(rgb):
@@ -23,37 +28,47 @@ def average_color(rgb):
     return r_avg, g_avg, b_avg
 
 
-def rgb2hsv(r, g, b):
-    rp = r / 255
-    gp = g / 255
-    bp = b / 255
-    c_max = max(rp, gp, bp)
-    c_min = min(rp, gp, bp)
-    delta = c_max - c_min
+def cmyk2rgb(c, m, y, k):
+    r = 255 * (1 - c) * (1 - k)
+    g = 255 * (1 - m) * (1 - k)
+    b = 255 * (1 - y) * (1 - k)
 
-    if delta == 0:
-        h = 0
-    elif c_max == rp:
-        h = 60 * (((gp - bp) / delta) % 6)
-    elif c_max == gp:
-        h = 60 * (((bp - rp) / delta) + 2)
+    return r, g, b
+
+
+def hex2rgb(hx):
+    return int(hx[0:2], 16), int(hx[2:4], 16), int(hx[4:6], 16)
+
+
+def hsi2rgb(h, s, i):
+    h *= pi / 180
+    i /= 255
+    x = i * (1 - s)
+    y = i * (1 + (s * cos(h)) / cos((pi / 3) - h))
+    z = 3 * i - (x + y)
+
+    if h < 2 * pi / 3:
+        b = x
+        r = y
+        g = z
+    elif h < 4 * pi / 3:
+        h -= 2 * pi / 3
+        r = x
+        g = y
+        b = z
     else:
-        h = 60 * (((rp - gp) / delta) + 4)
+        h -= 4 * pi / 3
+        g = x
+        b = y
+        r = z
 
-    if c_max == 0:
-        s = 0
-    else:
-        s = delta / c_max
-
-    v = c_max
-
-    return h, s, v
+    return r * 255, g * 255, b * 255
 
 
-def hsv2rgb(h, s, v):
-    c = v * s
+def hsl2rgb(h, s, l):
+    c = (1 - abs(2 * l - 1)) * s
     x = c * (1 - abs((h / 60) % 2 - 1))
-    m = v - c
+    m = l - c / 2
 
     if 0 <= h < 60:
         rp = c
@@ -83,37 +98,10 @@ def hsv2rgb(h, s, v):
     return rp * 255 + m, gp * 255 + m, bp * 255 + m
 
 
-def rgb2hsl(r, g, b):
-    rp = r / 255
-    gp = g / 255
-    bp = b / 255
-    c_max = max(rp, gp, bp)
-    c_min = min(rp, gp, bp)
-    delta = c_max - c_min
-
-    if delta == 0:
-        h = 0
-    elif c_max == rp:
-        h = 60 * (((gp - bp) / delta) % 6)
-    elif c_max == gp:
-        h = 60 * (((bp - rp) / delta) + 2)
-    else:
-        h = 60 * (((rp - gp) / delta) + 4)
-
-    l = (c_max + c_min) / 2
-
-    if delta == 0:
-        s = 0
-    else:
-        s = delta / (1 - abs((2 * l) - 1))
-
-    return h, s, l
-
-
-def hsl2rgb(h, s, l):
-    c = (1 - abs(2 * l - 1)) * s
+def hsv2rgb(h, s, v):
+    c = v * s
     x = c * (1 - abs((h / 60) % 2 - 1))
-    m = l - c / 2
+    m = v - c
 
     if 0 <= h < 60:
         rp = c
@@ -156,24 +144,12 @@ def rgb2cmyk(r, g, b):
     return c, m, y, k
 
 
-def cmyk2rgb(c, m, y, k):
-    r = 255 * (1 - c) * (1 - k)
-    g = 255 * (1 - m) * (1 - k)
-    b = 255 * (1 - y) * (1 - k)
-
-    return r, g, b
-
-
 def rgb2hex(r, g, b):
     r_hex = hex(r)[2:]
     g_hex = hex(g)[2:]
     b_hex = hex(b)[2:]
 
     return r_hex.zfill(2) + g_hex.zfill(2) + b_hex.zfill(2)
-
-
-def hex2rgb(hx):
-    return int(hx[0:2], 16), int(hx[2:4], 16), int(hx[4:6], 16)
 
 
 def rgb2hsi(r, g, b):
@@ -206,29 +182,58 @@ def rgb2hsi(r, g, b):
     return h * (180 / pi), s, i * 255
 
 
-def hsi2rgb(h, s, i):
-    h *= pi / 180
-    i /= 255
-    x = i * (1 - s)
-    y = i * (1 + (s * cos(h)) / cos((pi / 3) - h))
-    z = 3 * i - (x + y)
+def rgb2hsl(r, g, b):
+    rp = r / 255
+    gp = g / 255
+    bp = b / 255
+    c_max = max(rp, gp, bp)
+    c_min = min(rp, gp, bp)
+    delta = c_max - c_min
 
-    if h < 2 * pi / 3:
-        b = x
-        r = y
-        g = z
-    elif h < 4 * pi / 3:
-        h -= 2 * pi / 3
-        r = x
-        g = y
-        b = z
+    if delta == 0:
+        h = 0
+    elif c_max == rp:
+        h = 60 * (((gp - bp) / delta) % 6)
+    elif c_max == gp:
+        h = 60 * (((bp - rp) / delta) + 2)
     else:
-        h -= 4 * pi / 3
-        g = x
-        b = y
-        r = z
+        h = 60 * (((rp - gp) / delta) + 4)
 
-    return r * 255, g * 255, b * 255
+    l = (c_max + c_min) / 2
+
+    if delta == 0:
+        s = 0
+    else:
+        s = delta / (1 - abs((2 * l) - 1))
+
+    return h, s, l
+
+
+def rgb2hsv(r, g, b):
+    rp = r / 255
+    gp = g / 255
+    bp = b / 255
+    c_max = max(rp, gp, bp)
+    c_min = min(rp, gp, bp)
+    delta = c_max - c_min
+
+    if delta == 0:
+        h = 0
+    elif c_max == rp:
+        h = 60 * (((gp - bp) / delta) % 6)
+    elif c_max == gp:
+        h = 60 * (((bp - rp) / delta) + 2)
+    else:
+        h = 60 * (((rp - gp) / delta) + 4)
+
+    if c_max == 0:
+        s = 0
+    else:
+        s = delta / c_max
+
+    v = c_max
+
+    return h, s, v
 
 
 if __name__ == '__main__':
