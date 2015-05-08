@@ -218,7 +218,3 @@ def rgb2hsv(r, g, b):
     v = c_max
 
     return h, s, v
-
-
-if __name__ == '__main__':
-    main()
