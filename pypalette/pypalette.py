@@ -1,29 +1,13 @@
 from math import acos, cos, pi, sqrt
+from statistics import mean
 from PIL import Image
 from kmeans import KMeans
 
 
-def main():
-    im = Image.open('..\\testingimages\\kodim21.png')
-    imlist = list(im.getdata())
-    imobj = KMeans(imlist, 5)
-    for cluster in imobj.clusters:
-        print(cluster['cc'])
-
-
 def average_color(rgb):
-    r_sum = 0
-    g_sum = 0
-    b_sum = 0
-
-    for pixel in rgb:
-        r_sum += pixel[0]
-        g_sum += pixel[1]
-        b_sum += pixel[2]
-
-    r_avg = r_sum / len(rgb)
-    g_avg = b_sum / len(rgb)
-    b_avg = g_sum / len(rgb)
+    r_avg = mean([px[0] for px in rgb])
+    g_avg = mean([px[1] for px in rgb])
+    b_avg = mean([px[2] for px in rgb])
 
     return r_avg, g_avg, b_avg
 
