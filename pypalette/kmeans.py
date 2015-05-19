@@ -10,6 +10,24 @@ class KMeans:
         self.d = []
         self.clusters = [{'cc': copy(random.choice(self.im)), 'pts': []}]
 
+    def get_palette(self):
+        _lloyd()
+        return [c['cc'] for c in self.clusters]
+
+    def _euclid_dist(self, c, pt):
+        return sqrt((c[0] - pt[0]) ** 2 +
+                    (c[1] - pt[1]) ** 2 +
+                    (c[2] - pt[2]) ** 2)
+
+    def _has_converged(self, occ):
+        for i in range(0, len(self.clusters)):
+            for x in range(0, 3):
+                if (round(occ[i][x]) !=
+                        round([c['cc'] for c in self.clusters][i][x])):
+                    return False
+        return True
+
+    def _lloyd(self):
         while self.k - 1 > 0:
             if len(self.clusters) == 1:
                 for pt in self.im:
@@ -43,19 +61,6 @@ class KMeans:
             self._update_centroids()
             if self._has_converged(occ):
                 break
-
-    def _euclid_dist(self, c, pt):
-        return sqrt((c[0] - pt[0]) ** 2 +
-                    (c[1] - pt[1]) ** 2 +
-                    (c[2] - pt[2]) ** 2)
-
-    def _has_converged(self, occ):
-        for i in range(0, len(self.clusters)):
-            for x in range(0, 3):
-                if (round(occ[i][x]) !=
-                        round([c['cc'] for c in self.clusters][i][x])):
-                    return False
-        return True
 
     def _reassign_points(self):
         for c in self.clusters:
