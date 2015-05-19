@@ -1,35 +1,40 @@
 # ![PyPalette](http://i.imgur.com/QWeYq0i.png) PyPalette
 
 ## What is the goal of PyPalette?
-The current goal for PyPalette is not very defined. My plan is to incorporate as many different functionalities relating to colors and images as possible. There are so many things to do that I feel like going with the wind is the best way currently. Any suggestions are welcome and encouraged.
+The current goal for PyPalette is not very defined. My plan is to incorporate as many different functionalities relating to colors and images as possible. There are so many things that can be done that I feel like going with the wind is the best way currently. Any suggestions are welcome and encouraged!
 
 ## What does PyPalette currently do?
 1. **Color Space Conversions**
-  - CMYK -> RGB
-  - Hex -> RGB
-  - HSI -> RGB
-  - HSL -> RGB
-  - HSV -> RGB
-  - RGB -> CMYK
-  - RGB -> Hex
-  - RGB -> HSI
-  - RGB -> HSL
-  - RGB -> HSV
+  - RGB <=> CMYK
+  - RGB <=> Hex
+  - RGB <=> HSL
+  - RGB <=> HSV
 2. **Image Color Analysis**
   - Average color
 
 ## What are some things on the TODO list?
-- Thorough documentation
-- Thoroughly testing all functions
-- K-means clustering optimization (if possible)
-- Median color
-- Grayscale
-- Sepia
-- Image blending
-- Dithering
-- Easy access to CSS3 colors
-- Retro game console palettes
-- Atomic emission spectra (maybe)
+- Add HSI conversions back in if they stop being more temperamental than a sugar-high four-year-old
+- Clustering
+    * Optimizing K-means if possible
+    * Median-cut?
+    * k-d trees?
+- Documentation / Testing
+    * Thoroughly document ALL THE THINGS
+    * Make unit tests for ALL THE THINGS
+- Palettes
+    * Palette lists
+        * Retro consoles
+        * Crayon colors
+        * Country flags
+        * ABS and PBT plastic colors
+        * Something, something colors (I'll make a color list of fruit indigenous to Jamaica if I am so inclined)
+        * ColourLovers support?
+    * Palette class for palette creation
+- Image Processes/Analysis
+    * Median color, grayscale, sepia, etc.
+    * Dithering and noise
+    * Image blending
+    * "Daltonization" for the color-blind?
 
 ## License
     The MIT License (MIT)
