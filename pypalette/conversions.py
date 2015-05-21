@@ -236,6 +236,7 @@ def rgb2hsl(rgb, h_prec=0, sl_prec=3):
     c_min = min(r, g, b)
     delta = c_max - c_min
 
+    # Hue
     if delta == 0:
         h = 0
     elif c_max == r:
@@ -245,8 +246,10 @@ def rgb2hsl(rgb, h_prec=0, sl_prec=3):
     else:
         h = 60 * ((r - g) / delta + 4)
 
+    # Lightness
     l = (c_max + c_min) / 2
 
+    # Saturation
     if delta == 0:
         s = 0
     else:
@@ -288,6 +291,7 @@ def rgb2hsv(rgb, h_prec=0, sv_prec=3):
     c_min = min(r, g, b)
     delta = c_max - c_min
 
+    # Hue
     if delta == 0:
         h = 0
     elif c_max == r:
@@ -297,11 +301,13 @@ def rgb2hsv(rgb, h_prec=0, sv_prec=3):
     else:
         h = 60 * ((r - g) / delta + 4)
 
+    # Saturation
     if c_max == 0:
         s = 0
     else:
         s = delta / c_max
 
+    # Value / Brightness
     v = c_max
 
     return round(h, h_prec), round(s, sv_prec), round(v, sv_prec)
