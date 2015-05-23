@@ -5,36 +5,38 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
 
 ## What does PyPalette currently do?
 1. **Color Space Conversions**
-  - RGB <=> CMYK
-  - RGB <=> Hex
-  - RGB <=> HSL
-  - RGB <=> HSV
+  - RGB :arrows_counterclockwise: CMYK
+  - RGB :arrows_counterclockwise: Hex
+  - RGB :arrows_counterclockwise: HSL
+  - RGB :arrows_counterclockwise: HSV
 2. **Image Color Analysis**
   - Average color
+3. **Color Lists**
+  - CSS3
+  - Google Material Design
 
 ## What are some things on the TODO list?
-- Add HSI conversions back in if they stop being more temperamental than a sugar-high four-year-old
 - Clustering
-    * Optimizing K-means if possible
+    * Optimize K-means if possible
     * Median-cut?
-    * k-d trees?
 - Documentation / Testing
     * Thoroughly document ALL THE THINGS
     * Make unit tests for ALL THE THINGS
 - Palettes
     * Palette lists
-        * Retro consoles
-        * Crayon colors
-        * Country flags
+        * :video_game: Retro console palettes
+        * :art: Crayon colors
+        * :us: Country flags
         * ABS and PBT plastic colors
         * Something, something colors (I'll make a color list of fruit indigenous to Jamaica if I am so inclined)
         * ColourLovers support?
-    * Palette class for palette creation
+    * Palette class for percentage-based color palettes
 - Image Processes/Analysis
     * Median color, grayscale, sepia, etc.
     * Dithering and noise
     * Image blending
     * "Daltonization" for the color-blind?
+- :free: :icecream:
 
 ## License
     The MIT License (MIT)
