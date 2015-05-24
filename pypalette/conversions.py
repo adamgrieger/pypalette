@@ -10,6 +10,8 @@ def cmyk2rgb(cmyk, prec=0):
     CMYK values are expected to be on the interval [0, 1].
     RGB values are given on the interval [0, 255].
 
+    http://www.rapidtables.com/convert/color/cmyk-to-rgb.htm
+
     Args:
         cmyk (tuple): The CMYK quadruplet to convert.
         prec (int, optional): The decimal precision for RGB value rounding.
@@ -57,6 +59,8 @@ def hsl2rgb(hsl, prec=0):
     H values are expected to be on the interval [0, 360).
     S and L values are expected to be on the interval [0, 1].
     RGB values are given on the interval [0, 255].
+
+    http://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
 
     Args:
         hsl (tuple): The HSL triplet to convert.
@@ -108,6 +112,8 @@ def hsv2rgb(hsv, prec=0):
     S and V values are expected to be on the interval [0, 1].
     RGB values are given on the interval [0, 255].
 
+    http://en.wikipedia.org/wiki/HSL_and_HSV#From_HSV
+
     Args:
         hsv (tuple): The HSV triplet to convert.
         prec (int, optional): The decimal precision for RGB value rounding.
@@ -156,6 +162,8 @@ def rgb2cmyk(rgb, prec=3):
 
     RGB values are expected to be on the interval [0, 255].
     CMYK values are given on the interval [0, 1].
+
+    http://www.rapidtables.com/convert/color/rgb-to-cmyk.htm
 
     Args:
         rgb (tuple): The RGB triplet to convert.
@@ -213,6 +221,8 @@ def rgb2hsl(rgb, h_prec=0, sl_prec=3):
     H values are given on the interval [0, 360).
     S and L values are given on the interval [0, 1].
 
+    http://www.rapidtables.com/convert/color/rgb-to-hsl.htm
+
     Args:
         rgb (tuple): The RGB triplet to convert.
         h_prec (int, optional): The decimal precision for H value rounding.
@@ -267,6 +277,8 @@ def rgb2hsv(rgb, h_prec=0, sv_prec=3):
     RGB values are expected to be on the interval [0, 255].
     H values are given on the interval [0, 360).
     S and V values are given on the interval [0, 1].
+
+    http://www.rapidtables.com/convert/color/rgb-to-hsv.htm
 
     Args:
         rgb (tuple): The RGB triplet to convert.

@@ -1,3 +1,11 @@
+"""CSS3 Color Names
+
+NOTE: There are some color names with the same color value
+    (i.e. aqua/cyan, gray/grey, etc.).
+
+http://www.w3.org/TR/css3-color/#svg-color
+
+"""
 css3 = {
     'aliceblue': '#f0f8ff',
     'antiquewhite': '#faebd7',
@@ -148,6 +156,11 @@ css3 = {
     'yellowgreen': '#9acd32',
 }
 
+"""Google Material Design Colors
+
+http://www.google.com/design/spec/style/color.html#color-color-palette
+
+"""
 material_design = {
     # Red
     'red-50': '#ffebee',
