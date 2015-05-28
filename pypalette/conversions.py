@@ -4,24 +4,24 @@ from math import acos, cos, pi, radians, sqrt
 def cmyk2rgb(cmyk, prec=0):
     """Converts a CMYK quadruplet into an RGB triplet.
 
-    NOTE: CMYK and RGB color spaces have different color gamuts, so visual
-        results may differ depending on what RGB profile is selected.
-
     CMYK values are expected to be on the interval [0, 1].
     RGB values are given on the interval [0, 255].
 
     http://www.rapidtables.com/convert/color/cmyk-to-rgb.htm
 
+    Note: CMYK and RGB color spaces have different color gamuts, so visual
+        results may differ depending on what RGB profile is selected.
+
     Args:
-        cmyk (tuple): The CMYK quadruplet to convert.
-        prec (int, optional): The decimal precision for RGB value rounding.
+        cmyk: A CMYK tuple.
+        prec: An optional int for RGB value decimal precision,
+            defaults to 0.
 
     Returns:
-        tuple: An RGB triplet.
+        An RGB tuple.
 
     Raises:
         ValueError: If one or more CMYK values are outside the interval [0, 1].
-
     """
     for value in cmyk:
         if not 0 <= value <= 1:
@@ -41,11 +41,10 @@ def hex2rgb(hx):
     RGB values are given on the interval [0, 255].
 
     Args:
-        hx (string): The RGB Hexadecimal to convert.
+        hx: An RGB Hex string.
 
     Returns:
-        tuple: An RGB triplet.
-
+        An RGB tuple.
     """
     if hx[0] == '#':
         return int(hx[1:3], 16), int(hx[3:5], 16), int(hx[5:7], 16)
@@ -63,16 +62,16 @@ def hsl2rgb(hsl, prec=0):
     http://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
 
     Args:
-        hsl (tuple): The HSL triplet to convert.
-        prec (int, optional): The decimal precision for RGB value rounding.
+        hsl: An HSL tuple.
+        prec: An optional int for RGB value decimal precision,
+            defaults to 0.
 
     Returns:
-        tuple: An RGB triplet.
+        An RGB tuple.
 
     Raises:
         ValueError: If the given H value is outside [0, 360),
             or if the given S and/or L values are outside [0, 1].
-
     """
     h, s, l = hsl[0] / 60, hsl[1], hsl[2]
 
@@ -105,26 +104,26 @@ def hsl2rgb(hsl, prec=0):
 def hsv2rgb(hsv, prec=0):
     """Converts an HSV triplet into an RGB triplet.
 
-    NOTE: HSV is also known as HSB, so if you're looking
-        for HSB, look no further!
-
     H values are expected to be on the interval [0, 360).
     S and V values are expected to be on the interval [0, 1].
     RGB values are given on the interval [0, 255].
 
     http://en.wikipedia.org/wiki/HSL_and_HSV#From_HSV
 
+    Note: HSV is also known as HSB, so if you're looking
+        for HSB, look no further!
+
     Args:
-        hsv (tuple): The HSV triplet to convert.
-        prec (int, optional): The decimal precision for RGB value rounding.
+        hsv: An HSV tuple.
+        prec: An optional int for RGB value decimal precision,
+            defaults to 0.
 
     Returns:
-        tuple: An RGB triplet.
+        An RGB tuple.
 
     Raises:
         ValueError: If the given H value is outside [0, 360),
             or if the given S and/or V values are outside [0, 1].
-
     """
     h, s, v = hsv[0] / 60, hsv[1], hsv[2]
 
@@ -157,21 +156,24 @@ def hsv2rgb(hsv, prec=0):
 def rgb2cmyk(rgb, prec=3):
     """Converts an RGB triplet into a CMYK quadruplet.
 
-    NOTE: CMYK and RGB color spaces have different color gamuts, so visual
-        results may differ depending on what RGB profile is selected.
-
     RGB values are expected to be on the interval [0, 255].
     CMYK values are given on the interval [0, 1].
 
     http://www.rapidtables.com/convert/color/rgb-to-cmyk.htm
 
+    Note: CMYK and RGB color spaces have different color gamuts, so visual
+        results may differ depending on what RGB profile is selected.
+
     Args:
-        rgb (tuple): The RGB triplet to convert.
-        prec (int, optional): The decimal precision for RGB value rounding.
+        rgb: An RGB tuple.
+        prec: An optional int for CMYK value decimal precision,
+            defaults to 3.
 
     Returns:
-        tuple: A CMYK quadruplet.
+        A CMYK tuple.
 
+    Raises:
+        ValueError: If the given RGB values are outside [0, 255].
     """
     for value in rgb:
         if not 0 <= value <= 255:
@@ -197,11 +199,13 @@ def rgb2hex(rgb):
     Hex values are given in the form '#xxxxxx'.
 
     Args:
-        rgb (tuple): The RGB triplet to convert.
+        rgb: An RGB tuple.
 
     Returns:
-        string: An RGB Hexadecimal.
+        An RGB Hex string.
 
+    Raises:
+        ValueError: If the given RGB values are outside [0, 255].
     """
     for value in rgb:
         if not 0 <= value <= 255:
@@ -224,17 +228,17 @@ def rgb2hsl(rgb, h_prec=0, sl_prec=3):
     http://www.rapidtables.com/convert/color/rgb-to-hsl.htm
 
     Args:
-        rgb (tuple): The RGB triplet to convert.
-        h_prec (int, optional): The decimal precision for H value rounding.
-        sl_prec (int, optional): The decimal precision for
-            S and L value rounding.
+        rgb: An RGB tuple.
+        h_prec: An optional int for H value decimal precision,
+            defaults to 0.
+        sl_prec: An optional int for S and L value decimal precision,
+            defaults to 3.
 
     Returns:
-        tuple: An HSL triplet.
+        An HSL tuple.
 
     Raises:
         ValueError: If the given RGB values are outside [0, 255].
-
     """
     for value in rgb:
         if not 0 <= value <= 255:
@@ -271,27 +275,27 @@ def rgb2hsl(rgb, h_prec=0, sl_prec=3):
 def rgb2hsv(rgb, h_prec=0, sv_prec=3):
     """Converts an RGB triplet into an HSV triplet.
 
-    NOTE: HSV is also known as HSB, so if you're looking
-        for HSB, look no further!
-
     RGB values are expected to be on the interval [0, 255].
     H values are given on the interval [0, 360).
     S and V values are given on the interval [0, 1].
 
     http://www.rapidtables.com/convert/color/rgb-to-hsv.htm
 
+    Note: HSV is also known as HSB, so if you're looking
+        for HSB, look no further!
+
     Args:
-        rgb (tuple): The RGB triplet to convert.
-        h_prec (int, optional): The decimal precision for H value rounding.
-        sv_prec (int, optional): The decimal precision for
-            S and V value rounding.
+        rgb: An RGB tuple.
+        h_prec: An optional int for H value decimal precision,
+            defaults to 0.
+        sv_prec: An optional int for S and V value decimal precision,
+            defaults to 3.
 
     Returns:
-        tuple: An HSV triplet.
+        An HSV tuple.
 
     Raises:
         ValueError: If the given RGB values are outside [0, 255].
-
     """
     for value in rgb:
         if not 0 <= value <= 255:
