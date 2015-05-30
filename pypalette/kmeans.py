@@ -3,6 +3,20 @@ from math import sqrt
 import random
 
 
+def euclid_dist(c, pt):
+    """Calculates the 3D Euclidean distance between two points.
+
+    Args:
+        c: A cluster centroid as an RGB tuple.
+        pt: A selected image point as an RGB tuple.
+
+    Returns:
+        The Euclidean distance between the two points.
+    """
+    return sqrt((c[0] - pt[0]) ** 2 + (c[1] - pt[1]) ** 2 +
+                (c[2] - pt[2]) ** 2)
+
+
 class KMeans(object):
     """A class for performing k-means clustering on an image.
 
@@ -23,7 +37,16 @@ class KMeans(object):
         Args:
             im: An image as a list of RGB tuples.
             k: The number of clusters to generate.
+
+        Raises:
+            ValueError: If an empty image is passed (i.e. []) or if the desired
+                amount of clusters is less than two.
         """
+        if len(im) == 0:
+            raise ValueError('An empty image has been passed')
+        elif k < 2:
+            raise ValueError('The number of clusters must be at least two')
+
         self.im = im
         self.k = k
         self.d = []    # Empty distances list for use later on
@@ -31,28 +54,19 @@ class KMeans(object):
         # First initial cluster centroid is chosen uniformly at random
         self.clusters = [{'cc': copy(random.choice(self.im)), 'pts': []}]
 
-    def get_colors(self):
+    def get_colors(self, prec=0):
         """Returns a list of k colors that are most representative of the image.
+
+        Args:
+            prec: An optional int for RGB value decimal precision,
+                defaults to 0.
 
         Returns:
             A list of k RGB tuples.
         """
-        _kpp_init()
-        _lloyd()
+        self._kpp_init()
+        self._lloyd()
         return [c['cc'] for c in self.clusters]
-
-    def _euclid_dist(self, c, pt):
-        """Calculates the 3D Euclidean distance between two points.
-
-        Args:
-            c: A cluster centroid as an RGB tuple.
-            pt: A selected image point as an RGB tuple.
-
-        Returns:
-            The Euclidean distance between the two points.
-        """
-        return sqrt((c[0] - pt[0]) ** 2 + (c[1] - pt[1]) ** 2 +
-                    (c[2] - pt[2]) ** 2)
 
     def _has_converged(self, occ):
         """Determines whether the cluster centroids have converged.
@@ -87,15 +101,14 @@ class KMeans(object):
             # No point in calculating minimum distances with one cluster
             if len(self.clusters) == 1:
                 for pt in self.im:
-                    self.d.append(self._euclid_dist(
-                                  self.clusters[0]['cc'], pt))
+                    self.d.append(euclid_dist(self.clusters[0]['cc'], pt))
             # Assigns each point to the nearest cluster
             else:
                 for pt in self.im:
                     min_dist = float('inf')    # For first comparison
                     for c in self.clusters:
-                        if self._euclid_dist(c['cc'], pt) < min_dist:
-                            min_dist = self._euclid_dist(c['cc'], pt)
+                        if euclid_dist(c['cc'], pt) < min_dist:
+                            min_dist = euclid_dist(c['cc'], pt)
                     self.d.append(min_dist)
 
             # Probability distrubution proportional to squared distance
@@ -138,8 +151,8 @@ class KMeans(object):
             min_dist = float('inf')    # For first comparison
             min_index = 0
             for i, c in enumerate(self.clusters):
-                if self._euclid_dist(c['cc'], pt) < min_dist:
-                    min_dist = self._euclid_dist(c['cc'], pt)
+                if euclid_dist(c['cc'], pt) < min_dist:
+                    min_dist = euclid_dist(c['cc'], pt)
                     min_index = i
             self.clusters[min_index]['pts'].append(pt)
 
