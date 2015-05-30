@@ -1,11 +1,10 @@
-"""CSS3 Color Names
+# CSS3 Named Colors
+#
+# NOTE: There are some color names with the same color value
+#     (i.e. aqua/cyan, gray/grey, etc.).
+#
+# http://www.w3.org/TR/css3-color/#svg-color
 
-NOTE: There are some color names with the same color value
-    (i.e. aqua/cyan, gray/grey, etc.).
-
-http://www.w3.org/TR/css3-color/#svg-color
-
-"""
 css3 = {
     'aliceblue': '#f0f8ff',
     'antiquewhite': '#faebd7',
@@ -156,11 +155,10 @@ css3 = {
     'yellowgreen': '#9acd32',
 }
 
-"""Google Material Design Colors
+# Google Material Design Colors
+#
+# http://www.google.com/design/spec/style/color.html#color-color-palette
 
-http://www.google.com/design/spec/style/color.html#color-color-palette
-
-"""
 material_design = {
     # Red
     'red-50': '#ffebee',
@@ -435,4 +433,115 @@ material_design = {
     'bluegrey-700': '#455a64',
     'bluegrey-800': '#37474f',
     'bluegrey-900': '#263238',
+}
+
+# Signature Plastics' PBT Colors
+#
+# http://deskthority.net/wiki/Signature_Plastics_PBT_colours
+
+sp_pbt = {
+    'bct': '#0075ad',
+    'bdj': '#2790c2',
+    'bdo': '#009bca',
+    'bfb': '#0078a3',
+    'bfc': '#a7d0db',
+    'bfd': '#2e6ea6',
+    'bfe': '#95bfe8',
+    'bff': '#51c0dd',
+    'bfg': '#79bbec',
+    'bfh': '#408fb3',
+    'bfv': '#5dcde3',
+    'bfw': '#34a4b9',
+    'gah': '#81817e',
+    'gca': '#b4b2ab',
+    'gch': '#a09888',
+    'gde': '#909596',
+    'gdl': '#aca494',
+    'gdm': '#c8c4b8',
+    'gec': '#929390',
+    'ggx': '#aeaeab',
+    'gho': '#afb0ae',
+    'gjq': '#82807a',
+    'gjw': '#8f877f',
+    'gkk': '#c4c8c5',
+    'gkl': '#9b9381',
+    'gkp': '#8d887a',
+    'gmc': '#abacab',
+    'gqc': '#a19d91',
+    'gqj': '#babcba',
+    'gqn': '#c3b9aa',
+    'gqp': '#a49d97',
+    'gqt': '#525554',
+    'gra': '#c1c0b7',
+    'grz': '#aeb0b0',
+    'gse': '#7b7871',
+    'gsf': '#2d3238',
+    'gsg': '#c7c0b5',
+    'gsj': '#bfc0c0',
+    'gsk': '#a2a2a6',
+    'gsn': '#bab7ad',
+    'gso': '#9b988d',
+    'gsq': '#828687',
+    'gtk': '#c8c1b1',
+    'gtp': '#928c7d',
+    'nq': '#2b2c2e',
+    'oal': '#ff6d1a',
+    'oax': '#ff7921',
+    'oay': '#ffb07b',
+    'oaz': '#f16f3b',
+    'obb': '#ff7f22',
+    'ot': '#f4791e',
+    'ow': '#c0472c',
+    'raa': '#c13c39',
+    'rag': '#e26757',
+    'rar': '#cb2f2a',
+    'rbd': '#d31929',
+    'rbh': '#b81b24',
+    'rbr': '#cd2e31',
+    'rca': '#d290b4',
+    'rcb': '#857eb1',
+    'rcc': '#d13c42',
+    'rcd': '#bfbad1',
+    'rce': '#6c6680',
+    'rcf': '#c74852',
+    'rcg': '#ffb2d2',
+    'rch': '#ffadce',
+    'rck': '#c83337',
+    'rcl': '#f396ab',
+    'rcm': '#9b6482',
+    'rcp': '#cd2f2c',
+    'tt': '#c0a480',
+    'up': '#e3e2dd',
+    'val': '#6ca29d',
+    'vaz': '#009057',
+    'vbd': '#93c9b7',
+    'vca': '#00987e',
+    'vcb': '#85bba8',
+    'vcc': '#45b866',
+    'vcd': '#006d59',
+    'vce': '#7adabd',
+    'vcg': '#0bab4e',
+    'vch': '#00a477',
+    'vcr': '#00833e',
+    'vct': '#0bab4a',
+    'vs': '#245343',
+    'wan': '#e8e7e3',
+    'was': '#dfdacf',
+    'wat': '#c2beb1',
+    'wbk': '#e2dbca',
+    'wbr': '#c7c3b4',
+    'wcs': '#c3bfae',
+    'wcv': '#d0c6b9',
+    'wcx': '#e5dbca',
+    'wdg': '#f1ede6',
+    'wfj': '#d9dae0',
+    'wfn': '#c8c4b6',
+    'yaf': '#ffe08d',
+    'yam': '#ffd100',
+    'yas': '#f9cd31',
+    'ybt': '#f4dc9c',
+    'ybv': '#fad03d',
+    'ybz': '#d4872a',
+    'ycj': '#e8a900',
+    'yr': '#ffc100',
 }
