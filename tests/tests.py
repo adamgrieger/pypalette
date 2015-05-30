@@ -22,6 +22,11 @@ class TestColorLists(unittest.TestCase):
 
         self.assertEqual(color_lists.material_design['blue-500'], '#2196f3')
 
+    def test_sp_pbt(self):
+        """Tests the Signature Plastics' PBT color list."""
+
+        self.assertEqual(color_lists.sp_pbt['gqp'], '#a49d97')
+
 
 class TestConversions(unittest.TestCase):
     """Tests color space conversion functions."""
