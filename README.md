@@ -19,8 +19,9 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
 2. **Image Color Analysis**
   - [average_color](https://github.com/adamgrieger/pypalette/blob/master/pypalette/pypalette.py#L5-26)
 3. **Color Lists**
-  - [CSS3 Color Names](https://github.com/adamgrieger/pypalette/blob/master/pypalette/color_lists.py#L1-157)
-  - [Google Material Design Colors](https://github.com/adamgrieger/pypalette/blob/master/pypalette/color_lists.py#L159-438)
+  - [CSS3 Named Colors](https://github.com/adamgrieger/pypalette/blob/master/pypalette/color_lists.py#L1-156)
+  - [Google Material Design Colors](https://github.com/adamgrieger/pypalette/blob/master/pypalette/color_lists.py#L158-436)
+  - [Signature Plastics' PBT Colors](https://github.com/adamgrieger/pypalette/blob/master/pypalette/color_lists.py#L438-547)
 4. **Clustering**
   - [*k*-means with *k*-means++ seeding](https://github.com/adamgrieger/pypalette/blob/master/pypalette/kmeans.py#L20-165)
 
@@ -32,7 +33,7 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
         * :video_game: Retro video game console palettes
         * :art: Crayola crayon and colored pencil colors
         * :us: Country flags (w/ color percentages)
-        * Signature Plastics' ABS and PBT plastic colors
+        * Signature Plastics' ABS plastic colors
         * Something, something colors (I'll make a color list of fruit indigenous to Jamaica if I am so inclined)
         * ColourLovers support (I believe they have an API)?
     * Palette class for percentage-based color palettes
