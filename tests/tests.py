@@ -3,7 +3,24 @@ import sys
 import os
 
 sys.path.append(os.path.join('..', 'pypalette'))
+import color_lists
 import conversions
+import kmeans
+import pypalette
+
+
+class TestColorLists(unittest.TestCase):
+    """Tests color list accessibility."""
+
+    def test_css3(self):
+        """Tests the CSS3 color list."""
+
+        self.assertEqual(color_lists.css3['dodgerblue'], '#1e90ff')
+
+    def test_material_design(self):
+        """Tests the Google Material Design color list."""
+
+        self.assertEqual(color_lists.material_design['blue-500'], '#2196f3')
 
 
 class TestConversions(unittest.TestCase):
@@ -180,6 +197,44 @@ class TestConversions(unittest.TestCase):
                          (35.3, 0.656, 0.843))
         self.assertEqual(conversions.rgb2hsv((215, 157, 74), sv_prec=2),
                          (35, 0.66, 0.84))
+
+
+class TestKMeans(unittest.TestCase):
+    """Tests the k-means clustering class."""
+
+    def test_kmeans_im_check(self):
+        """Tests the empty image error for the KMeans class."""
+
+        self.assertRaises(ValueError, kmeans.KMeans, [], 3)
+
+    def test_kmeans_k_check(self):
+        """Tests the invalid number of clusters error for the KMeans class."""
+
+        self.assertRaises(ValueError, kmeans.KMeans, [0, 0, 0], 1)
+
+    def test_kmeans_get_colors(self):
+        """Tests the get_colors method from the KMeans class."""
+
+        # Fibonacci sequence anyone?
+        im = [(0, 1, 1), (2, 3, 5), (8, 13, 21), (34, 55, 89)]
+        im_kmeans = kmeans.KMeans(im, 4)
+        im_colors = im_kmeans.get_colors()
+
+        # Sometimes the colors are in a different order because of the
+        # centroids being randomly picked.
+        self.assertEqual(sorted(im), sorted(im_colors))
+
+
+class TestPyPalette(unittest.TestCase):
+    """Tests main PyPalette functions."""
+
+    def test_average_color(self):
+        """Tests the average_color function."""
+
+        # Fibonacci sequence anyone?
+        im = [(0, 1, 1), (2, 3, 5), (8, 13, 21), (34, 55, 89)]
+
+        self.assertEqual(pypalette.average_color(im), (11, 18, 29))
 
 
 if __name__ == '__main__':
