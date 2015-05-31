@@ -241,6 +241,31 @@ class TestPyPalette(unittest.TestCase):
 
         self.assertEqual(pypalette.average_color(im), (11, 18, 29))
 
+    def test_grayscale(self):
+        """Tests the grayscale function."""
+
+        im = [(220, 215, 195), (67, 93, 60), (63, 202, 46), (255, 20, 52)]
+
+        self.assertEqual(pypalette.grayscale(im, mode='lightness'),
+                         [(208, 208, 208), (76, 76, 76), (124, 124, 124),
+                          (138, 138, 138)])
+        self.assertEqual(pypalette.grayscale(im, mode='average'),
+                         [(210, 210, 210), (73, 73, 73), (104, 104, 104),
+                          (109, 109, 109)])
+        self.assertEqual(pypalette.grayscale(im), [(215, 215, 215),
+                         (85, 85, 85), (162, 162, 162), (72, 72, 72)])
+
+    def test_grayscale_im_check(self):
+        """Tests the empty image error for grayscale."""
+
+        self.assertRaises(ValueError, pypalette.grayscale, [])
+
+    def test_grayscale_mode_check(self):
+        """Tests the invalid grayscale mode error."""
+
+        self.assertRaises(ValueError, pypalette.grayscale, [(34, 77, 104)],
+                          mode='beast')
+
 
 if __name__ == '__main__':
     unittest.main(exit=False)
