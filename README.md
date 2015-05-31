@@ -18,6 +18,7 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
   - [rgb2hsv](https://github.com/adamgrieger/pypalette/blob/master/pypalette/conversions.py#L275-329)
 2. **Image Color Analysis**
   - [average_color](https://github.com/adamgrieger/pypalette/blob/master/pypalette/pypalette.py#L5-26)
+  - [grayscale](https://github.com/adamgrieger/pypalette/blob/master/pypalette/pypalette.py#L29-69)
 3. **Color Lists**
   - [CSS3 Named Colors](https://github.com/adamgrieger/pypalette/blob/master/pypalette/color_lists.py#L1-156)
   - [Google Material Design Colors](https://github.com/adamgrieger/pypalette/blob/master/pypalette/color_lists.py#L158-436)
@@ -38,7 +39,7 @@ The current goal for PyPalette is not very defined. My plan is to incorporate as
         * ColourLovers support (I believe they have an API)?
     * Palette class for percentage-based color palettes
 - Image Processes/Analysis
-    * Median color, grayscale, sepia, etc.
+    * Median color, sepia, etc.
     * Dithering and noise
     * Image blending modes
     * "Daltonization" for the color-blind (may require LMS color space)?
